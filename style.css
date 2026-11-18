@@ -141,23 +141,17 @@ h1, h2, h3 {
 .textlink:hover { color: var(--brown); border-bottom-color: var(--brown); }
 
 /* ---------- FV ---------- */
-.fv { position: relative; background: var(--ground); overflow: hidden; }
-.fv__photo { position: relative; }
-.fv__photo img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; object-position: 78% 50%; }
-.fv__photo::after {
-  content: ""; position: absolute; inset: auto 0 0 0; height: 46%;
-  background: linear-gradient(to top, var(--ground) 6%, rgba(246, 241, 231, 0));
-}
-.fv__inner { position: relative; margin-top: -84px; padding: 0 24px 64px; }
+.fv { background: var(--ground); }
+.fv__photo { margin: 20px 24px 0; }
+.fv__photo img { width: 100%; height: auto; border-radius: 2px; }
+.fv__inner { padding: 28px 24px 56px; }
 .fv__place { display: flex; align-items: center; gap: 12px; font-size: 13px; letter-spacing: .16em; color: var(--moss); font-weight: 500; }
 .fv__sep { width: 28px; height: 1px; background: var(--moss); }
-/* 文字装飾はここ1か所だけ：写真に重なる見出しを、地色の柔らかい光で分離する（袋文字は使わない） */
 .fv__title {
   margin-top: 18px;
   font-size: clamp(31px, 8.7vw, 44px);
   font-weight: 600; line-height: 1.5; letter-spacing: .08em;
   color: var(--moss);
-  text-shadow: 0 0 18px rgba(246, 241, 231, .95), 0 0 42px rgba(246, 241, 231, .9), 0 0 72px rgba(246, 241, 231, .75);
 }
 .fv__lead { margin-top: 20px; font-size: 15px; line-height: 2.1; }
 .fv__shop { margin-top: 26px; display: flex; align-items: baseline; gap: 12px; color: var(--moss); }
@@ -176,6 +170,7 @@ h1, h2, h3 {
 .section__lead { margin-top: 22px; text-align: center; font-size: 15px; color: var(--ink); }
 .photo { margin: 0; }
 .photo img { width: 100%; object-fit: cover; border-radius: 2px; }
+.photo figcaption { margin-top: 8px; font-size: 11px; color: var(--ink-soft); text-align: right; letter-spacing: .08em; line-height: 1.6; }
 
 /* ---------- 2. 悩み ---------- */
 .section--worry { background: var(--paper); }
@@ -200,6 +195,7 @@ h1, h2, h3 {
 .services { margin-top: 56px; display: grid; gap: 56px; }
 .service { display: grid; gap: 22px; }
 .service__photo img { aspect-ratio: 3 / 2; }
+.service__photo--room img { aspect-ratio: 1; object-position: center 48%; }
 .service__body { position: relative; }
 .service__num { display: block; font-family: var(--serif); font-size: 15px; color: var(--brown); letter-spacing: .2em; line-height: 1; }
 .service__num::after { content: ""; display: inline-block; vertical-align: middle; width: 36px; height: 1px; margin-left: 12px; background: var(--brown); }
@@ -256,8 +252,6 @@ h1, h2, h3 {
 
 /* ---------- 7. セラピスト ---------- */
 .therapist { margin-top: 44px; display: grid; gap: 36px; }
-.therapist__photo img { aspect-ratio: 4 / 5; object-position: 50% 30%; }
-.therapist__photo figcaption { margin-top: 8px; font-size: 11px; color: var(--ink-soft); text-align: right; letter-spacing: .08em; line-height: 1.6; }
 .profile__name { font-family: var(--serif); font-size: 30px; letter-spacing: .2em; color: var(--moss); line-height: 1.5; }
 .profile__roman { display: block; font-family: var(--sans); font-size: 12px; letter-spacing: .28em; color: var(--brown); margin-top: 4px; }
 .profile__text { margin-top: 18px; font-size: 15px; }
@@ -279,6 +273,7 @@ h1, h2, h3 {
 .faq__a::before { content: "答"; color: var(--brown); line-height: 1.67; }
 .access { margin-top: 72px; }
 .access__title { text-align: center; font-size: 24px; letter-spacing: .12em; color: var(--moss); }
+.access__photo { margin-top: 28px; }
 .info { margin: 28px 0 0; border-top: 1px solid var(--line); }
 .info > div { display: grid; grid-template-columns: 92px 1fr; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--line); }
 .info dt { font-size: 13px; letter-spacing: .12em; color: var(--moss); font-weight: 700; line-height: 2.2; }
@@ -321,22 +316,26 @@ h1, h2, h3 {
   .section { padding: 136px 0; }
   .knot { margin-bottom: 28px; }
 
-  /* FV：写真を全面に敷き、左側に生成りのグラデーションを敷いて文字の土台にする */
-  .fv { min-height: min(calc(100vh - var(--header-h)), 820px); display: flex; align-items: center; }
-  .fv__photo { position: absolute; inset: 0; }
-  .fv__photo img { width: 100%; height: 100%; aspect-ratio: auto; object-position: 70% 50%; }
-  .fv__photo::after {
-    inset: 0; height: auto;
-    background: linear-gradient(to right, rgba(246, 241, 231, .96) 0%, rgba(246, 241, 231, .9) 30%, rgba(246, 241, 231, .5) 48%, rgba(246, 241, 231, 0) 64%);
+  .fv {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    align-items: center;
+    gap: clamp(32px, 4vw, 64px);
+    width: min(100% - 96px, 1320px);
+    min-height: min(calc(100vh - var(--header-h)), 730px);
+    margin-inline: auto;
+    padding-block: 56px;
   }
-  .fv__inner { margin: 0; padding: 96px clamp(40px, 7vw, 120px); width: 100%; max-width: 1440px; margin-inline: auto; }
+  .fv__photo { grid-area: 1 / 2; margin: 0; }
+  .fv__photo img { aspect-ratio: 4 / 3; object-fit: cover; object-position: 54% center; }
+  .fv__inner { grid-area: 1 / 1; padding: 0; }
   .fv__place { font-size: 14px; }
   .fv__title { margin-top: 28px; font-size: clamp(46px, 4.5vw, 64px); line-height: 1.55; letter-spacing: .1em; }
   .fv__title .nw { display: block; }
   .fv__lead { margin-top: 30px; font-size: 16px; max-width: 30em; }
   .fv__shop { margin-top: 34px; }
   .fv__shop-name { font-size: 30px; }
-  .fv__actions { margin-top: 40px; flex-direction: row; align-items: center; gap: 32px; }
+  .fv__actions { margin-top: 40px; flex-flow: row wrap; align-items: center; gap: 16px 24px; }
   .fv__actions .btn { width: auto; }
 
   .worry { grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
