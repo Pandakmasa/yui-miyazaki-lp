@@ -32,6 +32,9 @@ body {
   font-family: var(--sans);
   font-size: 16px;
   line-height: 2;
+  line-break: strict;
+  word-break: auto-phrase;
+  overflow-wrap: anywhere;
   letter-spacing: .04em;
   font-feature-settings: "palt";
   -webkit-font-smoothing: antialiased;
@@ -44,9 +47,7 @@ h1, h2, h3 {
   margin: 0;
   font-family: var(--serif);
   font-weight: 500;
-  word-break: auto-phrase;
   text-wrap: balance;
-  line-break: strict;
 }
 .nw { display: inline-block; white-space: nowrap; }
 .tbc { color: var(--brown); font-weight: 500; }
@@ -338,7 +339,7 @@ h1, h2, h3 {
   .fv__photo { grid-area: 1 / 2; margin: 0; }
   .fv__inner { grid-area: 1 / 1; padding: 0; }
   .fv__place { font-size: 14px; }
-  .fv__title { margin-top: 28px; font-size: clamp(46px, 4.5vw, 64px); line-height: 1.55; letter-spacing: .1em; }
+  .fv__title { margin-top: 28px; font-size: clamp(36px, 4vw, 64px); line-height: 1.55; letter-spacing: .1em; }
   .fv__title .nw { display: block; }
   .fv__lead { margin-top: 30px; font-size: 16px; max-width: 30em; }
   .fv__shop { margin-top: 34px; }
